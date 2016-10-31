@@ -8,7 +8,7 @@ class DbHandler:
     def __init__(self):
         self.db = pm.db
         self.db.connect()
-        self.db.create_tables([rover_mission_data, rover_photo_data])
+        self.db.create_tables([rover_mission_data, rover_photo_data],safe=True)
 
     @staticmethod
     def save_mission_manifest_data(rover_data):
@@ -23,7 +23,7 @@ class DbHandler:
     @staticmethod
     def save_photo_data(photo_data):
         photos = rover_photo_data(rover_photo_data.create(img_src=photo_data['img_src'],
-                                                          earth_date=photo_data['earth_date'],name=photo_data['rover']))
+                                                          earth_date=int(photo_data['earth_date']),name=photo_data['rover']))
         try:
             photos.save()
         except IntegrityError as e:

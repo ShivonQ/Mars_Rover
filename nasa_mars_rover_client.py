@@ -19,13 +19,13 @@ class NasaMarsClient:
         common_cams = ['&camera=navcam','&camera=rhaz','&camera=fhaz']
         constructed_url = self.photo_url + self.rover[rover_number] + '/photos?' + earth_date + date + common_cams[cam_num] + '&'+self.key
         info = requests.get(constructed_url)
-        data = {'rover': self.rover[rover_number],'date':date,'photo_list':[]}
+        data = {'rover': self.rover[rover_number],'earth_date':date,'img_src':[]}
         photo_urls=[]
         for photo in info.json()['photos']:
             for photo_url in photo:
                 if photo_url == 'img_src':
                     photo_urls.append(photo[photo_url])
-        data['photo_list'] = photo_urls
+        data['img_src'] = photo_urls
         print(data)
         # print(photo_list)
         return data

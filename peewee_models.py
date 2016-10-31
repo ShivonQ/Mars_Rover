@@ -10,7 +10,7 @@ class base_model(Model):
 
 class rover_photo_data(base_model):
     img_src = CharField
-    earth_date = CharField(max_length=10)
+    earth_date = DateField
     name = CharField(max_length=15)
 
 class rover_mission_data(base_model):
