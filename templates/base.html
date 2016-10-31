@@ -27,14 +27,17 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
 {#        <li><a href="/rover_home" name="spirit">Spirit</a></li>#}
-          <li><form action="/rover_home" method="post">
-              <input type="text" hidden="hidden" value="Spirit" content="Spirit"><button class="nav_button" type="submit">Spirit</button>
+          <li><form action="{{ url_for('rover_home') }}" method="post">
+              <input type="text" hidden="hidden" value="Spirit" content="Spirit">
+              <button class="nav_button" type="submit">Spirit</button>
           </form></li>
           <li><form action="/rover_home" method="post">
-              <input type="text" hidden="hidden" value="Opportunity" content="Opportunity"><button class="nav_button" type="submit">Opportunity</button>
+              <input type="text" hidden="hidden" value="Opportunity" content="Opportunity">
+              <button class="nav_button" type="submit">Opportunity</button>
           </form></li>
           <li><form action="/rover_home" method="post">
-              <input type="text" hidden="hidden" value="Curiosity" content="Curiosity"><button class="nav_button" type="submit">Curiosity</button>
+              <input type="text" hidden="hidden" value="Curiosity" content="Curiosity">
+              <button class="nav_button" type="submit">Curiosity</button>
           </form></li>
 {#        <li><a href="/rover_home" name="opportunity">Opportunity</a></li>#}
 {#        <li><a href="/rover_home" name="curiosity">Curiosity</a></li>#}

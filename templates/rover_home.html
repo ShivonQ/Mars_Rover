@@ -38,9 +38,9 @@
                 <tr class="biopic_row">
                     <td class="rover_td"><p>Number of Martian Days spent on the ground</p></td>
                     <td class="rover_td">
-                        <form action="/photos" method="post">
+                        <form action="/photos" method="POST">
                             <input type="text" value="{{ rover_name }}" hidden="hidden">
-                            <button type="submit">Search This Rovers Photo Archive</button>
+                            <button type="submit" name = 'picture_search'>Search This Rovers Photo Archive</button>
                         </form>
                     </td>
                 </tr>
