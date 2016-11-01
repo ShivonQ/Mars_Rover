@@ -10,11 +10,11 @@
                 </tr>
                 <tr class="biopic_row">
                     <td rowspan="4">
-                            {% if  rover_name  is equalto 'spirit' %}
+                            {% if  rover_name  is equalto 'Spirit' %}
                                 <img class="rover_portrait" src={{ url_for('static',filename='./img/Spirit_Portrait.jpg') }}>{% endif %}
-                            {% if  rover_name is equalto 'curiosity' %}
+                            {% if  rover_name is equalto 'Curiosity' %}
                                 <img class="rover_portrait" src={{ url_for('static',filename='./img/Curiosity_Self_Portrait.jpg') }}>{% endif %}
-                            {% if rover_name  is equalto 'opportunity' %}
+                            {% if rover_name  is equalto 'Opportunity' %}
                                 <img class="rover_portrait" src={{ url_for('static',filename='./img/Opportunity_Portrait.jpg') }}>{% endif %}
                     </td>
 {#                name = CharField(max_length=15, unique=True)
@@ -24,19 +24,19 @@
     total_photos = IntegerField
     status = CharField(max_length=20)
     max_sol = IntegerField#}
-                    <td class="rover_td"><p>THIS IS WHERE LAUNCH DATE GOES</p></td>
-                    <td class="rover_td"><p>TOTAL NUMBER OF PICS ROVER HAS TAKEN TO DATE</p></td>
+                    <td class="rover_td"><p>Launched {{ launch_date }}</p></td>
+                    <td class="rover_td"><p>{{ total_photos }} pictures to date</p></td>
                 </tr>
                 <tr class="biopic_row">
-                    <td class="rover_td"><p>THIS IS WHERE THE LANDING DATE GOES</p></td>
-                    <td class="rover_td"><p>THIS IS WHERE THE LANDING DATE GOES</p></td>
+                    <td class="rover_td" colspan="2"><p>Landed on {{ landing_date }}</p></td>
+
                 </tr>
                 <tr class="biopic_row">
-                    <td class="rover_td"><p>THIS IS WHERE THE CURRENT DATE WILL GO</p></td>
-                    <td class="rover_td"><p>THIS IS WHERE THE CURRENT ROVER STATUS GOES</p></td>
+                    <td class="rover_td"><p>Active up to {{ max_date }}</p></td>
+                    <td class="rover_td"><p>Rover is Currently: {{ status }}</p></td>
                 </tr>
                 <tr class="biopic_row">
-                    <td class="rover_td"><p>Number of Martian Days spent on the ground</p></td>
+                    <td class="rover_td"><p>Martian days Spent on Mars: {{ max_sol }}</p></td>
                     <td class="rover_td">
                         <form action="/photos" method="POST">
                             <input type="text" value="{{ rover_name }}" hidden="hidden">
