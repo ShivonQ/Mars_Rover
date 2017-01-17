@@ -29,7 +29,10 @@ def images():
     three_cams_data = []
     for num in range(3):
         photos = nmrc.date_image_query(data[1], num, data[0])
-        three_cams_data.append(photos)
+        if photos != None:
+            three_cams_data.append(photos)
+        else:
+            print('No Images, So No Addition')
         print(three_cams_data)
 
     # photos = db.fetch_photos_for_date(data,'Curiosity')

@@ -39,8 +39,8 @@ class NasaMarsClient:
         # otherwise a key error will occur
         except KeyError as e:
             # return None in that case
-            if e:
-                return None
+            print('No Images From that Query to the API')
+            return None
 
 
     def mission_manifest_data(self, rover_num):
