@@ -32,20 +32,18 @@
                 {#        <li><a href="/rover_home" name="spirit">Spirit</a></li>#}
                 <li>
                     <form action="{{ url_for('rover_home') }}" method="post">
-                        <input type="text" hidden="hidden" value="Spirit" content="Spirit" name="rover">
+                        <input type="text" hidden="hidden" value="Spirit" name="rover" content="Spirit">
                         <button class="nav_button" type="submit">Spirit</button>
                     </form>
                 </li>
                 <li>
                     <form action="{{ url_for('rover_home') }}" method="post">
-                        <input type="text" hidden="hidden" value="Opportunity" content="Opportunity" name="rover">
-                        <button class="nav_button" type="submit" >Opportunity</button>
+                        <button class="nav_button" type="submit" name="rover" value="Opportunity">Opportunity</button>
                     </form>
                 </li>
                 <li>
                     <form action="{{ url_for('rover_home') }}" method="POST">
-                        <input type="text" hidden="hidden" value="Curiosity" content="Curiosity" name="rover">
-                        <button class="nav_button" type="submit">Curiosity</button>
+                        <button class="nav_button" type="submit" name="rover" value="Curiosity">Curiosity</button>
                     </form>
                 </li>
                 {#        <li><a href="/rover_home" name="opportunity">Opportunity</a></li>#}
