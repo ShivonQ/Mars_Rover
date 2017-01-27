@@ -13,11 +13,11 @@
                             {% set carousel_count = 0 %}
                             {%- for image_url in camera['img_src'] %}
                                 {% if carousel_count==0 %}
-                                    <li data-target="#{{ camera.cam_name }}-image-carousel" data-slide-to="{{ loop.index - 1 }}"
+                                    <li data-target="#{{ camera.cam_name }}-image-carousel" data-slide-to="{{ loop.index }}"
                                         class="active"></li>
                                     {% set carousel_count = carousel_count + 1 %}
                                 {% elif carousel_count >=1 %}
-                                    <li data-target="#{{ camera.cam_name }}-image-carousel" data-slide-to="{{ loop.index - 1 }}"></li>
+                                    <li data-target="#{{ camera.cam_name }}-image-carousel" data-slide-to="{{ loop.index }}"></li>
                                 {% endif %}
                             {% endfor %}
                         </ol>
