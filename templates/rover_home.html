@@ -36,13 +36,13 @@
                     <td class="rover_td"><p>Rover is Currently: {{ status }}</p></td>
                 </tr>
                 <tr class="biopic_row">
-                    <td class="rover_td"><p>Martian days Spent on Mars: {{ max_sol }}</p></td>
-                    <td class="rover_td">
-                        <form action="/photos" method="POST">
-                            <input type="text" value="{{ rover_name }}" hidden="hidden">
-                            <button type="submit" name = 'picture_search'>Search This Rovers Photo Archive</button>
-                        </form>
-                    </td>
+                    <td class="rover_td" colspan="2"><p>Martian days Spent on Mars: {{ max_sol }}</p></td>
+{#                    <td class="rover_td">#}
+{#                        <form action="/photos" method="POST">#}
+{#                            <input type="text" value="{{ rover_name }}" hidden="hidden">#}
+{#                            <button type="submit" name = 'picture_search'>Search This Rovers Photo Archive</button>#}
+{#                        </form>#}
+{#                    </td>#}
                 </tr>
             </table>
         </div>

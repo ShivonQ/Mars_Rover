@@ -8,7 +8,7 @@ class NasaMarsClient:
         self.manifest_url = 'https://api.nasa.gov/mars-photos/api/v1/manifests/'
 
         self.rover = ['Spirit','Opportunity','Curiosity']
-        self.key = key
+        self.key = 'api_key=' + key
 
     def get_rovers(self):
         return self.rover
