@@ -2,7 +2,11 @@
 {% block content %}
 
         <!-- Wrapper for slides -->
-        <div id="allImages" class="col-sm-8">
+    <div id="prev_div" class="col-sm-1">
+        <p id="prev_day">Previous Day</p>
+    </div>
+
+        <div id="allImages" class="col-sm-6">
             {% if photos|length > 0 %}
                 {% for camera in photos %}
                     {#        MAKE ALL IMAGES INTO DIVS WITH CLASS NAME = camera['cam_name'] #}
@@ -10,33 +14,28 @@
                     <div id="{{ camera.cam_name }}-image-carousel" class="carousel slide {{ camera.cam_name }}" data-ride="carousel">
                         {#                    indicators of slide # #}
                         <ol class="{{ camera.cam_name }} carousel-indicators">
-                            {% set carousel_count = 0 %}
                             {%- for image_url in camera['img_src'] %}
-                                {% if carousel_count==0 %}
+                                {% if loop.index0==0 %}
                                     <li data-target="#{{ camera.cam_name }}-image-carousel" data-slide-to="{{ loop.index }}"
                                         class="active"></li>
-                                    {% set carousel_count = carousel_count + 1 %}
-                                {% elif carousel_count >=1 %}
+
+                                {% elif loop.index0 >=1 %}
                                     <li data-target="#{{ camera.cam_name }}-image-carousel" data-slide-to="{{ loop.index }}"></li>
                                 {% endif %}
                             {% endfor %}
                         </ol>
 
                         <div class="carousel-inner" role="listbox">
-                            {% set count2 = 0 %}
-
                             {%- for image_url in camera['img_src'] %}
                                 {#                    FIRST IMAGE#}
-                                {% if count2 == 0 %}
+                                {% if loop.index0 == 0 %}
                                     <div class="item active">
                                         <img src="{{ image_url }}">
-                                        {% set count2 = count2 + 1 %}
                                     </div>
                                     {#    SCOND IMAGE ETC...#}
-                                {% elif count2 >= 1 %}
+                                {% elif loop.index0 >= 1 %}
                                     <div class="item">
                                         <img src="{{ image_url }}">
-                                        {% set count2 = count2 + 1 %}
                                     </div>
                                 {% endif %}
                             {% endfor %}
@@ -54,6 +53,9 @@
                 {% endfor %}
             {% endif %}
         </div>
+    <div id="next_div" class="col-sm-1">
+        <p id="next_button">Next Day</p>
+    </div>
 
 
 {% endblock %}

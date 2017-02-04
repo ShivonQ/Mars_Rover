@@ -43,9 +43,9 @@ class NasaMarsClient:
             return None
 
 
-    def mission_manifest_data(self, rover_num):
+    def mission_manifest_data(self, rover_name):
 
-        name = self.rover[rover_num]
+        name = rover_name
         constructed_url = self.manifest_url+name+'?'+self.key
 
         info = requests.get(constructed_url)

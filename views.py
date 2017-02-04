@@ -43,19 +43,21 @@ def images():
 
 @app.route('/rover_home', methods=['POST'])
 def rover_home():
-    # TODO: GET DATABASE INFO FROM DB
+    # This whole block makes the call to the API, then parses the data, and passes it along to the rover homepage.
     data = request.get_data(as_text=True)
-    split=data.split('=')
+    print(data)
+    split = data.split('=')
     print(split)
-    manifest = db.fetch_mission_manifest(split[1])
+    manifest = nmrc.mission_manifest_data(split[1])
+    # manifest = db.fetch_mission_manifest(split[1])
     print(request.form)
     return render_template('rover_home.html',
-                           rover_name=manifest.name,
-                           launch_date=manifest.launch_date,
-                           landing_date=manifest.landing_date,
-                           max_date=manifest.max_date,
-                           status=manifest.status,
-                           total_photos=manifest.total_photos,
-                           max_sol=manifest.max_sol)
+                           rover_name=manifest['name'],
+                           launch_date=manifest['launch_date'],
+                           landing_date=manifest['landing_date'],
+                           max_date=manifest['max_date'],
+                           status=manifest['status'],
+                           total_photos=manifest['total_photos'],
+                           max_sol=manifest['max_sol'])
 if __name__ == '__main__':
     app.run()
