@@ -1,17 +1,55 @@
 {% extends 'base.html' %}
 {% block content %}
+<h3 style="text-align: center">Photos Taken On {{ date }} </h3>
 
-        <!-- Wrapper for slides -->
+{#    <ul class="nav nav-tabs">
+  <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+  <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
+  <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+</ul>
+
+<div class="tab-content">
+  <div id="home" class="tab-pane fade in active">
+    <h3>HOME</h3>
+    <p>Some content.</p>
+  </div>
+  <div id="menu1" class="tab-pane fade">
+    <h3>Menu 1</h3>
+    <p>Some content in menu 1.</p>
+  </div>
+  <div id="menu2" class="tab-pane fade">
+    <h3>Menu 2</h3>
+    <p>Some content in menu 2.</p>
+  </div>
+</div>#}
+    <ul class="nav nav-tabs">
+    {% if photos|length > 0 %}
+        {% for camera in photos %}
+            {% if loop.index0 == 0 %}
+                <li class="active"> <a data-toggle="tab" href="#{{ camera.cam_name }}-image-carousel">{{ camera.cam_name }}</a></li>
+            {% elif loop.index0 >= 1 %}
+                <li><a data-toggle="tab" href="#{{ camera.cam_name }}-image-carousel">{{ camera.cam_name }}</a></li>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    </ul>
+
     <div id="prev_div" class="col-sm-1">
-        <p id="prev_day">Previous Day</p>
+        <p id="prev_day" class="btn btn-success">Prev Day</p>
     </div>
 
-        <div id="allImages" class="col-sm-6">
+        <!-- Wrapper for slides -->
+        <div id="allImages" class="col-sm-6 tab-content">
             {% if photos|length > 0 %}
                 {% for camera in photos %}
                     {#        MAKE ALL IMAGES INTO DIVS WITH CLASS NAME = camera['cam_name'] #}
                     {#                    THIS SHOULD MAKE A CAROUSELF FOR EACH CAMERA AND NAME IT IN THE CLASS #}
-                    <div id="{{ camera.cam_name }}-image-carousel" class="carousel slide {{ camera.cam_name }}" data-ride="carousel">
+{#-----------------------------------------------------THIS IS THE INDIVIDUAL CAROUSEL-------------------------------------------------#}
+                    {% if loop.index0 == 0 %}
+                        <div id="{{ camera.cam_name }}-image-carousel" class="carousel slide {{ camera.cam_name }} tab-pane fade in active" data-ride="carousel">
+                    {% elif loop.index0 >= 1 %}
+                        <div id="{{ camera.cam_name }}-image-carousel" class="carousel slide {{ camera.cam_name }} tab-pane fade" data-ride="carousel">
+                    {% endif %}
                         {#                    indicators of slide # #}
                         <ol class="{{ camera.cam_name }} carousel-indicators">
                             {%- for image_url in camera['img_src'] %}
@@ -50,12 +88,14 @@
                             <span class="sr-only">Next</span>
                         </a>
                     </div>
+{#---------------------------------------------------THIS IS THE END OF THE INDIVIDUAL CAROUSEL-------------------------------------------------#}
                 {% endfor %}
             {% endif %}
         </div>
     <div id="next_div" class="col-sm-1">
-        <p id="next_button">Next Day</p>
+        <p id="next_button" class="btn btn-success">Next Day</p>
     </div>
+
 
 
 {% endblock %}
