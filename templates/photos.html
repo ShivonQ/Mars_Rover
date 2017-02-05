@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+    <link href="{{ url_for('static', filename='script/date.js') }}" rel="text/javascript">
     <h3 style="text-align: center">Photos Taken On {{ date }} </h3>
 
     <ul class="nav nav-tabs">
@@ -97,11 +98,19 @@
         </div>
         <script>
             $('#prev_day').click(function () {
-                var today = $('#current_date').val();
-                var tommorrow = datepicker.setDate(today);
-                console.log(today);
-                console.log(tommorrow)
-            })
+                var today = Date.parse($('#current_date').val());
+                console.log('today\'s ms : '+today);
+                today = today+86400001;
+                console.log('tomorows ms : '+today);
+                tommorrow = new Date(today);
+
+                console.log(tommorrow);
+
+{#
+{#                var tomorrow_str = Date.parse(tomorrow);#}
+{#                console.log(tommorrow);#}
+{#                console.log(tomorrow_str);#}
+            });
 {#             $('.pickupDate').change(function() {
   var date2 = $('.pickupDate').datepicker('getDate', '+1d');
   date2.setDate(date2.getDate()+1);
