@@ -21,6 +21,7 @@ def images():
     req = request.get_data(as_text=True)
     print(req)
     data = pr.parse_name_and_date(req)
+    print(data)
     # TODO: Make this reqeust parse into a dict, {name:name, date:date}, OR [name,date]
     '''
     We fetch the 3 common cams for this rover, pack them into that dictionary, with their cam names
