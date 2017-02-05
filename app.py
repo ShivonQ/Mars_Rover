@@ -34,7 +34,7 @@ def images():
             three_cams_data.append(photos)
         else:
             print('No Images, So No Addition')
-        print(three_cams_data)
+        # print(three_cams_data)
 
     # photos = db.fetch_photos_for_date(data,'Curiosity')
 
@@ -46,12 +46,12 @@ def images():
 def rover_home():
     # This whole block makes the call to the API, then parses the data, and passes it along to the rover homepage.
     data = request.get_data(as_text=True)
-    print(data)
+    # print(data)
     split = data.split('=')
-    print(split)
+    # print(split)
     manifest = nmrc.mission_manifest_data(split[1])
     # manifest = db.fetch_mission_manifest(split[1])
-    print(request.form)
+    # print(request.form)
     return render_template('rover_home.html',
                            rover_name=manifest['name'],
                            launch_date=manifest['launch_date'],
