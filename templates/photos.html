@@ -17,10 +17,21 @@
             {% endfor %}
         {% endif %}
     </ul>
+    <form class="form-vertical" method="post" action="/photos">
 
-    <div id="prev_div" class="col-sm-1">
-        <p id="prev_day" class="btn btn-success">Prev Day</p>
-    </div>
+
+        <div class="form-group sm-col-1">
+            {#        rover will be supplied by the rover_hom_page when the button is clicked#}
+            <input type="text" value="{{ rover_name }}" hidden="hidden" name="rover_name">
+            {#        again provided by the call route#}
+            <input type="text" name="search_day" class="prev_day_form" value="{{ date }}" hidden="hidden">
+
+            <button class="btn btn-success" type="submit">Prev Day</button>
+        </div>
+    </form>
+    {#    <div id="prev_div" class="col-sm-1">#}
+    {#        <p id="prev_day" class="btn btn-success">Prev Day</p>#}
+    {#    </div>#}
 
     <!-- Wrapper for slides -->
     <div id="allImages" class="col-sm-6 tab-content">
@@ -81,9 +92,20 @@
             {% endfor %}
         {% endif %}
         </div>
-        <div id="next_div" class="col-sm-1">
-            <p id="next_day" class="btn btn-success">Next Day</p>
+
+    <form class="form-vertical" method="post" action="/photos">
+        <div class="form-group sm-col-1">
+            {#        rover will be supplied by the rover_hom_page when the button is clicked#}
+            <input type="text" value="{{ rover_name }}" hidden="hidden" name="rover_name">
+            {#        again provided by the call route#}
+            <input type="text" name="search_day" class="next_day_form" value="{{ date }}" hidden="hidden">
+
+            <button class="btn btn-success next_day_btn" type="submit">Next Day</button>
         </div>
+    </form>
+        {#        <div id="next_div" class="col-sm-1">#}
+{#            <p id="next_day" class="btn btn-success">Next Day</p>#}
+{#        </div>#}
         <div style="align-content: center" class="col-sm-12">
             <form class="form-vertical" method="post" action="/photos">
                 <div class="form-group sm-col-4">
@@ -99,53 +121,44 @@
             <input type="date" value="{{ date }}" id="hidden_date" hidden="hidden">
         </div>
 
-     <form class="form-vertical" method="post" action="/photos">
-    <div class="form-group sm-col-4">
-{#        rover will be supplied by the rover_hom_page when the button is clicked#}
-       <input type="text" value="{{ rover_name }}" hidden="hidden" name="rover_name">
-{#        again provided by the call route#}
-        <input type="date" name="search_day" id="prev_day_form" hidden="hidden">
-
-        <button class="btn btn-success" type="submit" >Prev Day</button>
-    </div>
-
-</form>
-
 
         <script>
-            $(document).ready(function(){
+            $(document).ready(function () {
                 var this_date = moment($('#hidden_date').val());
-                var prev_day = this_date.subtract(1,'d').format('YYYY-MM-DD');
-                var next_day = this_date.add(1,'d').format('YYYY-MM-DD');
-                $('.prev_day_form').val(prev_day)
+                var prev_day = this_date.subtract(1, 'd').format('YYYY-MM-DD');
+                console.log('prev day: ' + prev_day);
+                var next_day = this_date.add(2, 'd').format('YYYY-MM-DD');
+                console.log('next day; ' + next_day);
+                $('.prev_day_form').val(prev_day);
+                $('.next_day_form').val(next_day);
             });
 
             $('#prev_day').click(function () {
                 var this_date = moment($('#hidden_date').val());
-                var prev_day = this_date.subtract(1,'d').format('YYYY-MM-DD');
+                var prev_day = this_date.subtract(1, 'd').format('YYYY-MM-DD');
                 var request = {rover_name: $("#rover_name").val(), date: prev_day};
                 $.post("/photos", {
                     request
 
                 });
-{#                $.ajax({#}
-{#                    url:'/photos',#}
-{#                    data: request,#}
-{#                    type:'POST',#}
-{#                    success:function(response){#}
-{#                        $("#entire_page_content").replaceWith(response);#}
-{#                        window.location.reload()#}
-{#                    },#}
-{#                    error:function(error){#}
-{#                        console.log(error)#}
-{#                    }#}
-{#                });#}
+                {#                $.ajax({#}
+                {#                    url:'/photos',#}
+                {#                    data: request,#}
+                {#                    type:'POST',#}
+                {#                    success:function(response){#}
+                {#                        $("#entire_page_content").replaceWith(response);#}
+                {#                        window.location.reload()#}
+                {#                    },#}
+                {#                    error:function(error){#}
+                {#                        console.log(error)#}
+                {#                    }#}
+                {#                });#}
                 {#                TODO: Make this post a API request, and replace content#}
                 {#                $.post("/photos", {#}
-{#                    request#}
-{#                }, function (resp) {#}
-{#                    $("#entire_page_content").replaceWith(resp)#}
-{#                })#}
+                {#                    request#}
+                {#                }, function (resp) {#}
+                {#                    $("#entire_page_content").replaceWith(resp)#}
+                {#                })#}
             });
             $('#next_day').click(function () {
                 var today = Date.parse($('#hidden_date').val());

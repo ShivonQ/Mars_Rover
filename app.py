@@ -1,12 +1,10 @@
 from flask import Flask
 from flask import render_template
 from flask import request
-from database import DbHandler as DBH
 from nasa_mars_rover_client import NasaMarsClient as nmrc
 import parse_reqs as pr
 app = Flask(__name__)
 nmrc = nmrc()
-db = DBH(nmrc)
 
 
 @app.route('/')
@@ -37,7 +35,7 @@ def images():
         # print(three_cams_data)
 
     # photos = db.fetch_photos_for_date(data,'Curiosity')
-
+    # TODO: Pass Max and Min Dates as well, so that the image buttons cannot go past them.
     return render_template('photos.html', photos=three_cams_data,
                                           rover_name=data[0],
                                           date=data[1])
