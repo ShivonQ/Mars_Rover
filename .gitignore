@@ -2,4 +2,8 @@ api_key.py
 database.py
 peewee_models.py
 testing.py
-mars_rover_photo_data.db
+mars_rover_photo_data.db
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
