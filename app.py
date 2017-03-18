@@ -48,8 +48,6 @@ def rover_home():
     split = data.split('=')
     # print(split)
     manifest = nmrc.mission_manifest_data(split[1])
-    # manifest = db.fetch_mission_manifest(split[1])
-    # print(request.form)
     return render_template('rover_home.html',
                            rover_name=manifest['name'],
                            launch_date=manifest['launch_date'],
@@ -59,4 +57,5 @@ def rover_home():
                            total_photos=manifest['total_photos'],
                            max_sol=manifest['max_sol'])
 if __name__ == '__main__':
+    app.config['DEBUG'] = True
     app.run()

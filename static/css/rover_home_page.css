@@ -1,10 +1,16 @@
 div.rover_bio_pic_data{
+    border: solid;
+    border-radius: 30px;
+    padding-left: 15px;
     /*border: groove;*/
     /*border-radius: 10px;*/
 }
+h3.rover_name_header{
+    text-align: center;
+}
 div.main_rover_pic{
-    /*border: groove;*/
-    /*border-radius: 30px;*/
+    border: hidden;
+    border-radius: 30px;
 
 }
 img.rover_portrait{
@@ -12,16 +18,17 @@ img.rover_portrait{
     /*border-radius: 15px;*/
 }
 table.rover_biopic{
-    /*border: groove;*/
+    /*border: solid;*/
     /*border-radius: 30px;*/
+    padding-left: 15px;
 }
 tr.biopic_row{
     align-content: center;
-    border: double;
-    border-radius: 30px;
+    /*border: solid;*/
+    /*border-radius: 30px;*/
 }
 td.rover_td{
     align-content: center;
-    border: double;
-    border-radius: 30px;
+    /*border: solid;*/
+    /*border-radius: 30px;*/
 }

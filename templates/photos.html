@@ -17,156 +17,122 @@
             {% endfor %}
         {% endif %}
     </ul>
-    <form class="form-vertical" method="post" action="/photos">
-
-
-        <div class="form-group sm-col-1">
-            {#        rover will be supplied by the rover_hom_page when the button is clicked#}
-            <input type="text" value="{{ rover_name }}" hidden="hidden" name="rover_name">
-            {#        again provided by the call route#}
-            <input type="text" name="search_day" class="prev_day_form" value="{{ date }}" hidden="hidden">
-
-            <button class="btn btn-success" type="submit">Prev Day</button>
-        </div>
-    </form>
-    {#    <div id="prev_div" class="col-sm-1">#}
-    {#        <p id="prev_day" class="btn btn-success">Prev Day</p>#}
-    {#    </div>#}
-
-    <!-- Wrapper for slides -->
-    <div id="allImages" class="col-sm-6 tab-content">
-        {% if photos|length > 0 %}
-            {% for camera in photos %}
-                {#        MAKE ALL IMAGES INTO DIVS WITH CLASS NAME = camera['cam_name'] #}
-                {#                    THIS SHOULD MAKE A CAROUSELF FOR EACH CAMERA AND NAME IT IN THE CLASS #}
-                {#-----------------------------------------------------THIS IS THE INDIVIDUAL CAROUSEL-------------------------------------------------#}
-                {% if loop.index0 == 0 %}
-                    <div id="{{ camera.cam_name }}-image-carousel"
-                         class="carousel slide {{ camera.cam_name }} tab-pane fade in active" data-ride="carousel">
-                {% elif loop.index0 >= 1 %}
-                    <div id="{{ camera.cam_name }}-image-carousel"
-                         class="carousel slide {{ camera.cam_name }} tab-pane fade" data-ride="carousel">
-                {% endif %}
-            {#                    indicators of slide # #}
-            <ol class="{{ camera.cam_name }} carousel-indicators">
-                {%- for image_url in camera['img_src'] %}
-                    {% if loop.index0==0 %}
-                        <li data-target="#{{ camera.cam_name }}-image-carousel" data-slide-to="{{ loop.index }}"
-                            class="active"></li>
-
-                    {% elif loop.index0 >=1 %}
-                        <li data-target="#{{ camera.cam_name }}-image-carousel"
-                            data-slide-to="{{ loop.index }}"></li>
-                    {% endif %}
-                {% endfor %}
-            </ol>
-
-            <div class="carousel-inner" role="listbox">
-                {%- for image_url in camera['img_src'] %}
-                    {#                    FIRST IMAGE#}
-                    {% if loop.index0 == 0 %}
-                        <div class="item active">
-                            <img src="{{ image_url }}">
-                        </div>
-                        {#    SCOND IMAGE ETC...#}
-                    {% elif loop.index0 >= 1 %}
-                        <div class="item">
-                            <img src="{{ image_url }}">
-                        </div>
-                    {% endif %}
-                {% endfor %}
-            </div>
-            <!--Controls-->
-            <a class="left carousel-control" data-target="#{{ camera.cam_name }}-image-carousel" role="button"
-               data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="right carousel-control" data-target="#{{ camera.cam_name }}-image-carousel" role="button"
-               data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-            </div>
-                {#---------------------------------------------------THIS IS THE END OF THE INDIVIDUAL CAROUSEL-------------------------------------------------#}
-            {% endfor %}
-        {% endif %}
-        </div>
-
-    <form class="form-vertical" method="post" action="/photos">
-        <div class="form-group sm-col-1">
-            {#        rover will be supplied by the rover_hom_page when the button is clicked#}
-            <input type="text" value="{{ rover_name }}" hidden="hidden" name="rover_name">
-            {#        again provided by the call route#}
-            <input type="text" name="search_day" class="next_day_form" value="{{ date }}" hidden="hidden">
-
-            <button class="btn btn-success next_day_btn" type="submit">Next Day</button>
-        </div>
-    </form>
-        {#        <div id="next_div" class="col-sm-1">#}
-{#            <p id="next_day" class="btn btn-success">Next Day</p>#}
-{#        </div>#}
-        <div style="align-content: center" class="col-sm-12">
+    <div class="col-md-8 pictures_and_buttons">
+        {#    Previous Day Button    #}
+        <div class="form-group sm-col-1" style="display: inline-block">
             <form class="form-vertical" method="post" action="/photos">
-                <div class="form-group sm-col-4">
-                    {#        rover will be supplied by the rover_hom_page when the button is clicked#}
-                    <input type="text" value="{{ rover_name }}" hidden="hidden" name="rover_name" id="rover_name">
-                    {#        again provided by the call route#}
-                    <input type="date" value="{{ date }}" id="current_date">
-
-                    <button type="submit">Search With These Parameters</button>
-                </div>
-
+                {#        rover will be supplied by the rover_hom_page when the button is clicked#}
+                <input type="text" value="{{ rover_name }}" hidden="hidden" name="rover_name">
+                {#        again provided by the call route#}
+                <input type="text" name="search_day" class="prev_day_form" value="{{ date }}" hidden="hidden">
+                <button class="btn btn-success" type="submit">Prev Day</button>
             </form>
-            <input type="date" value="{{ date }}" id="hidden_date" hidden="hidden">
+            <form class="form-vertical" method="post" action="/photos">
+                {#        rover will be supplied by the rover_hom_page when the button is clicked#}
+                <input type="text" value="{{ rover_name }}" hidden="hidden" name="rover_name">
+                {#        again provided by the call route#}
+                <input type="text" name="search_day" class="next_day_form" value="{{ date }}" hidden="hidden">
+                <button class="btn btn-success next_day_btn" type="submit">Next Day</button>
+            </form>
+        </div>
+        {#    <div id="prev_div" class="col-sm-1">#}
+        {#        <p id="prev_day" class="btn btn-success">Prev Day</p>#}
+        {#    </div>#}
+
+        <!-- Wrapper for slides -->
+        <div id="allImages" class="col-sm-6 tab-content" style="display: inline-block">
+            {% if photos|length > 0 %}
+                {% for camera in photos %}
+                    {#        MAKE ALL IMAGES INTO DIVS WITH CLASS NAME = camera['cam_name'] #}
+                    {#                    THIS SHOULD MAKE A CAROUSELF FOR EACH CAMERA AND NAME IT IN THE CLASS #}
+                    {#-----------------------------------------------------THIS IS THE INDIVIDUAL CAROUSEL-------------------------------------------------#}
+                    {% if loop.index0 == 0 %}
+                        <div id="{{ camera.cam_name }}-image-carousel"
+                             class="carousel slide {{ camera.cam_name }} tab-pane fade in active" data-ride="carousel">
+                    {% elif loop.index0 >= 1 %}
+                        <div id="{{ camera.cam_name }}-image-carousel"
+                             class="carousel slide {{ camera.cam_name }} tab-pane fade" data-ride="carousel">
+                    {% endif %}
+                {#                    indicators of slide # #}
+                <ol class="{{ camera.cam_name }} carousel-indicators">
+                    {%- for image_url in camera['img_src'] %}
+                        {% if loop.index0==0 %}
+                            <li data-target="#{{ camera.cam_name }}-image-carousel" data-slide-to="{{ loop.index }}"
+                                class="active"></li>
+
+                        {% elif loop.index0 >=1 %}
+                            <li data-target="#{{ camera.cam_name }}-image-carousel"
+                                data-slide-to="{{ loop.index }}"></li>
+                        {% endif %}
+                    {% endfor %}
+                </ol>
+
+                <div class="carousel-inner" role="listbox">
+                    {%- for image_url in camera['img_src'] %}
+                        {#                    FIRST IMAGE#}
+                        {% if loop.index0 == 0 %}
+                            <div class="item active">
+                                <img src="{{ image_url }}">
+                            </div>
+                            {#    SCOND IMAGE ETC...#}
+                        {% elif loop.index0 >= 1 %}
+                            <div class="item">
+                                <img src="{{ image_url }}">
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <!--Controls-->
+                <a class="left carousel-control" data-target="#{{ camera.cam_name }}-image-carousel" role="button"
+                   data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" data-target="#{{ camera.cam_name }}-image-carousel" role="button"
+                   data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+                </div>
+                    {#---------------------------------------------------THIS IS THE END OF THE INDIVIDUAL CAROUSEL-------------------------------------------------#}
+                {% endfor %}
+            {% endif %}
+            </div>
         </div>
 
+    </div>
+    {#        <div id="next_div" class="col-sm-1">#}
+    {#            <p id="next_day" class="btn btn-success">Next Day</p>#}
+    {#        </div>#}
+    <div style="align-content: center" class="col-sm-12">
+        <form class="form-vertical" method="post" action="/photos">
+            <div class="form-group sm-col-4" style="align-content: center">
+                {#        rover will be supplied by the rover_hom_page when the button is clicked#}
+                <input type="text" value="{{ rover_name }}" hidden="hidden" name="rover_name" id="rover_name">
+                {#        again provided by the call route#}
+                <input type="date" value="{{ date }}" id="current_date">
 
-        <script>
-            $(document).ready(function () {
-                var this_date = moment($('#hidden_date').val());
-                var prev_day = this_date.subtract(1, 'd').format('YYYY-MM-DD');
-                console.log('prev day: ' + prev_day);
-                var next_day = this_date.add(2, 'd').format('YYYY-MM-DD');
-                console.log('next day; ' + next_day);
-                $('.prev_day_form').val(prev_day);
-                $('.next_day_form').val(next_day);
-            });
+                <button type="submit">Search With These Parameters</button>
+            </div>
 
-            $('#prev_day').click(function () {
-                var this_date = moment($('#hidden_date').val());
-                var prev_day = this_date.subtract(1, 'd').format('YYYY-MM-DD');
-                var request = {rover_name: $("#rover_name").val(), date: prev_day};
-                $.post("/photos", {
-                    request
+        </form>
+        <input type="date" value="{{ date }}" id="hidden_date" hidden="hidden">
+    </div>
 
-                });
-                {#                $.ajax({#}
-                {#                    url:'/photos',#}
-                {#                    data: request,#}
-                {#                    type:'POST',#}
-                {#                    success:function(response){#}
-                {#                        $("#entire_page_content").replaceWith(response);#}
-                {#                        window.location.reload()#}
-                {#                    },#}
-                {#                    error:function(error){#}
-                {#                        console.log(error)#}
-                {#                    }#}
-                {#                });#}
-                {#                TODO: Make this post a API request, and replace content#}
-                {#                $.post("/photos", {#}
-                {#                    request#}
-                {#                }, function (resp) {#}
-                {#                    $("#entire_page_content").replaceWith(resp)#}
-                {#                })#}
-            });
-            $('#next_day').click(function () {
-                var today = Date.parse($('#hidden_date').val());
-                console.log('today\'s ms : ' + today);
-                var tommorrow = today.add(+1).days();
-                console.log(tommorrow.toString('yyyy-MM-dd'));
-            })
-        </script>
+
+
+    <script>
+        {#            dinky script to insert next and prev days into hidden forms.#}
+        $(document).ready(function () {
+            var this_date = moment($('#hidden_date').val());
+            var prev_day = this_date.subtract(1, 'd').format('YYYY-MM-DD');
+            console.log('prev day: ' + prev_day);
+            var next_day = this_date.add(2, 'd').format('YYYY-MM-DD');
+            console.log('next day; ' + next_day);
+            $('.prev_day_form').val(prev_day);
+            $('.next_day_form').val(next_day);
+        });
+    </script>
 
 
 {% endblock %}

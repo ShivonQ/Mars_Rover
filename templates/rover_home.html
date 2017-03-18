@@ -3,27 +3,20 @@
 <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/rover_home_page.css') }}">
 {#TODO: WHEN THIS IS PASSED DB DATA#}
     <div class="md-col-5">
-        <div class='rover_bio_pic_data'>
+        <div class='rover_bio_pic_data md-col-5'>
             <table class="rover_biopic">
                 <tr class="biopic_row">
-                    <th colspan="3">{{ rover_name }}</th>
+                    <th colspan="4" ><h3 class="rover_name_header">{{ rover_name }}</h3></th>
                 </tr>
                 <tr class="biopic_row">
                     <td rowspan="4">
                             {% if  rover_name  is equalto 'Spirit' %}
-                                <img class="rover_portrait" src={{ url_for('static',filename='./img/Spirit_Portrait.jpg') }}>{% endif %}
+                                <img class="rover_portrait rounded" src={{ url_for('static',filename='./img/Spirit_Portrait.jpg') }}>{% endif %}
                             {% if  rover_name is equalto 'Curiosity' %}
-                                <img class="rover_portrait" src={{ url_for('static',filename='./img/Curiosity_Self_Portrait.jpg') }}>{% endif %}
+                                <img class="rover_portrait rounded" src={{ url_for('static',filename='./img/Curiosity_Self_Portrait.jpg') }}>{% endif %}
                             {% if rover_name  is equalto 'Opportunity' %}
-                                <img class="rover_portrait" src={{ url_for('static',filename='./img/Opportunity_Portrait.jpg') }}>{% endif %}
+                                <img class="rover_portrait rounded" src={{ url_for('static',filename='./img/Opportunity_Portrait.jpg') }}>{% endif %}
                     </td>
-{#                name = CharField(max_length=15, unique=True)
-    launch_date = DateField
-    landing_date = DateField
-    max_date = DateField
-    total_photos = IntegerField
-    status = CharField(max_length=20)
-    max_sol = IntegerField#}
                     <td class="rover_td"><p>Launched {{ launch_date }}</p></td>
                     <td class="rover_td"><p>{{ total_photos }} pictures to date</p></td>
                 </tr>
